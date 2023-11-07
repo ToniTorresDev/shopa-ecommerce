@@ -1,11 +1,13 @@
 
+import DefaultLayout from "../../layouts/default"
+
 function Home() {
   return (
-    <div className='flex justify-center align-center'>
+    <DefaultLayout>
         <h1 className="text-3xl font-bold underline bg-red-100">
             Home pagee!
         </h1>
-    </div>
+    </DefaultLayout>
   )
 }
 
