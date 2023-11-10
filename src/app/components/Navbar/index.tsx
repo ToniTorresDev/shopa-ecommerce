@@ -1,9 +1,12 @@
-import React from "react";
+import React, {useContext} from "react";
 import { NavLink } from "react-router-dom";
 
 import { leftNav, rightNav } from "./menuLists";
 
+import { ShoppingCartContext } from "../../context";
+
 function Navbar() {
+    const context = useContext(ShoppingCartContext)
     const activeStyle = "underline underline-offset-4"
     const pendingStyle = ""
     const transitioningStyle = ""
@@ -60,6 +63,20 @@ function Navbar() {
                         </NavLink>
                     </li>
                 ))}
+                <li >
+                    <NavLink 
+                        to="my-carts"
+                        className={({ isActive, isPending, isTransitioning }) =>
+                            [
+                                isPending ? pendingStyle : "",
+                                isActive ? activeStyle : "",
+                                isTransitioning ? transitioningStyle : "",
+                            ].join(" ")
+                        }
+                    >
+                        {context.shoppingCartCount}
+                    </NavLink>
+                </li>
             </ul>
         </nav>
     );
