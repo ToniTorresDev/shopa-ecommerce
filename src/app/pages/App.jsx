@@ -8,15 +8,19 @@ import AppRoutes from './AppRoutes'
 // Components
 import Navbar from '../components/Navbar'
 
+import { ShoppingCartProvider } from '../context'
+
 // General Styles
 import './App.css'
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <Navbar />
-      <AppRoutes />
-    </BrowserRouter>
+    <ShoppingCartProvider>
+      <BrowserRouter>
+        <Navbar />
+        <AppRoutes />
+      </BrowserRouter>
+    </ShoppingCartProvider>
   )
 }
 
