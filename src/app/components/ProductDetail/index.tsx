@@ -1,5 +1,6 @@
 
 import "./styles.css"
+import { XMarkIcon } from '@heroicons/react/24/solid'
 
 const ProductDetail = () => {
     return (
@@ -10,7 +11,7 @@ const ProductDetail = () => {
                         Title
                     </h2>
                     <div>
-                        x
+                        <XMarkIcon className="h-6 w-6 text-black cursor-pointer" />
                     </div>
                 </div>
                 <p className="my-3">

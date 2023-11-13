@@ -3,6 +3,8 @@ import { NavLink } from "react-router-dom";
 
 import { leftNav, rightNav } from "./menuLists";
 
+import { ShoppingBagIcon } from '@heroicons/react/24/solid'
+
 import { ShoppingCartContext } from "../../context";
 
 function Navbar() {
@@ -63,7 +65,8 @@ function Navbar() {
                         </NavLink>
                     </li>
                 ))}
-                <li >
+                <li className="flex items-center">
+                    <ShoppingBagIcon className="h-6 w-6 text-black cursor-pointer" />
                     <NavLink 
                         to="my-carts"
                         className={({ isActive, isPending, isTransitioning }) =>
