@@ -11,11 +11,15 @@ export const ShoppingCartProvider = ({ children }) => {
   const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
   const toggleProductDetail = () => setIsProductDetailOpen(!isProductDetailOpen);
 
+  // Product to show in modal
+  const [productToShow, setProductToShow] = useState({});
+
   return (
     <ShoppingCartContext.Provider value={{ 
         shoppingCartCount, setShoppingCartCount,
         isProductDetailOpen, setIsProductDetailOpen,
-        toggleProductDetail
+        toggleProductDetail,
+        productToShow, setProductToShow
     }}>
       {children}
     </ShoppingCartContext.Provider>
