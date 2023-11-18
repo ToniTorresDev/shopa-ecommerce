@@ -7,6 +7,8 @@ export const ShoppingCartProvider = ({ children }) => {
   // Cart list + counter
   const [shoppingCart, setShoppingCart] = useState([]);
   const [shoppingCartCount, setShoppingCartCount] = useState(0);
+  const [isShoppingCartOpen, setIsShoppingCartOpen] = useState(false);
+  const toggleShoppingCartModal = () => setIsShoppingCartOpen(!isShoppingCartOpen);
 
   // Product detail modal state - true/false
   const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
@@ -21,7 +23,9 @@ export const ShoppingCartProvider = ({ children }) => {
         isProductDetailOpen, setIsProductDetailOpen,
         toggleProductDetail,
         productToShow, setProductToShow,
-        shoppingCart, setShoppingCart
+        shoppingCart, setShoppingCart,
+        isShoppingCartOpen, setIsShoppingCartOpen,
+        toggleShoppingCartModal
     }}>
       {children}
     </ShoppingCartContext.Provider>

@@ -13,11 +13,15 @@ import { ShoppingCartProvider } from '../context'
 // General Styles
 import './App.css'
 
+// Components
+import Cart from '../components/Cart'
+
 const App = () => {
   return (
     <ShoppingCartProvider>
       <BrowserRouter>
         <Navbar />
+        <Cart />
         <AppRoutes />
       </BrowserRouter>
     </ShoppingCartProvider>

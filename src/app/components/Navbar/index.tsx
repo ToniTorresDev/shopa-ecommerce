@@ -65,20 +65,11 @@ function Navbar() {
                         </NavLink>
                     </li>
                 ))}
-                <li className="flex items-center">
+                <li className="flex items-center cursor-pointer"
+                    onClick={() => context.toggleShoppingCartModal()}
+                >
                     <ShoppingBagIcon className="h-6 w-6 text-black cursor-pointer" />
-                    <NavLink 
-                        to="my-carts"
-                        className={({ isActive, isPending, isTransitioning }) =>
-                            [
-                                isPending ? pendingStyle : "",
-                                isActive ? activeStyle : "",
-                                isTransitioning ? transitioningStyle : "",
-                            ].join(" ")
-                        }
-                    >
-                        {context.shoppingCartCount}
-                    </NavLink>
+                    {context.shoppingCartCount}
                 </li>
             </ul>
         </nav>
