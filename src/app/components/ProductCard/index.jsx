@@ -10,6 +10,11 @@ function ProductCard(data) {
         context.setProductToShow(productDetail)
     }
 
+    const addProductToCart = (product) => {
+        context.setShoppingCartCount(context.shoppingCartCount + 1)
+        context.setShoppingCart([...context.shoppingCart, product])
+    }
+
     return (
         <div onClick={() => showProduct(data.data)} 
             className="bg-white cursor-pointer w-56 h-60 rounded-lg"
@@ -24,7 +29,7 @@ function ProductCard(data) {
                     alt="headphones" 
                 />
                 <button className="absolute top-0 right-0 m-3 p-1 flex justify-center items-center bg-white w-6 h-6 rounded-full"
-                    onClick={() => context.setShoppingCartCount(context.shoppingCartCount + 1)}    
+                    onClick={addProductToCart}    
                 >
                     +
                 </button>

@@ -4,10 +4,11 @@ import { createContext, useState } from "react";
 export const ShoppingCartContext = createContext();
 
 export const ShoppingCartProvider = ({ children }) => {
-  // Aquí defines el estado inicial del número del carrito
+  // Cart list + counter
+  const [shoppingCart, setShoppingCart] = useState([]);
   const [shoppingCartCount, setShoppingCartCount] = useState(0);
 
-  // Product detail modal state
+  // Product detail modal state - true/false
   const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
   const toggleProductDetail = () => setIsProductDetailOpen(!isProductDetailOpen);
 
@@ -19,7 +20,8 @@ export const ShoppingCartProvider = ({ children }) => {
         shoppingCartCount, setShoppingCartCount,
         isProductDetailOpen, setIsProductDetailOpen,
         toggleProductDetail,
-        productToShow, setProductToShow
+        productToShow, setProductToShow,
+        shoppingCart, setShoppingCart
     }}>
       {children}
     </ShoppingCartContext.Provider>

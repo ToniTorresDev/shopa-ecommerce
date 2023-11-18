@@ -13,6 +13,7 @@ const ProductDetail = () => {
     const context = useContext(ShoppingCartContext)
     const showModal = context.isProductDetailOpen ? 'flex' : 'hidden'
     const product = context.productToShow
+    
     const productMaxRate = 5
     
     return (
@@ -40,7 +41,7 @@ const ProductDetail = () => {
 
             <div className="flex justify-between mt-3">
                 <small>
-                    {product.rating.rate}/{productMaxRate}
+                    {product.rating?.rate}/{productMaxRate}
                 </small>
                 
                 <small>
