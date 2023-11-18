@@ -12,7 +12,7 @@ function ProductCard(data) {
 
     return (
         <div onClick={() => showProduct(data.data)} 
-            className="bg-white cursor-poiinter w-56 h-60 rounded-lg"
+            className="bg-white cursor-pointer w-56 h-60 rounded-lg"
         >
             <figure className="relative mb-2 w-full h-4/5">
                 <span className="absolute bottom-0 left-0 px-3 py-0.5 bg-white/60 rounded-lg text-black text-xs m-2">
