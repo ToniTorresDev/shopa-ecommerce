@@ -1,20 +1,19 @@
-
 // React imports
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter } from "react-router-dom"
 
 // Routes
-import AppRoutes from './AppRoutes'
+import AppRoutes from "./AppRoutes"
 
 // Components
-import Navbar from '../components/Navbar'
+import Navbar from "../components/Navbar"
 
-import { ShoppingCartProvider } from '../context'
+import { ShoppingCartProvider } from "../context"
 
 // General Styles
-import './App.css'
+import "./App.css"
 
 // Components
-import Cart from '../components/Cart'
+import Cart from "../components/Cart"
 
 const App = () => {
   return (
