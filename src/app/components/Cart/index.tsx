@@ -6,7 +6,7 @@ import { ShoppingCartContext } from "../../context"
 import { XMarkIcon } from "@heroicons/react/24/solid"
 
 // Components
-import ProductCart from "../ProductCart"
+import ProductOrder from "../ProductOrder"
 
 // Styles
 import "./styles.css"
@@ -18,19 +18,26 @@ const Cart = () => {
 
   return (
     <aside
-      className={`z-10 product-detail p-5 flex flex-col fixed right-0 border border-black rounded-lg bg-white ${showModal}`}
+      className={`product-detail fixed right-0 z-10 flex flex-col rounded-lg border border-black bg-white p-5 ${showModal}`}
     >
-      <div className="flex justify-between items-center">
-        <h2 className="font-medium text-xl">Cart</h2>
+      <div className="flex items-center justify-between">
+        <h2 className="text-xl font-medium">Cart</h2>
 
         <button onClick={() => context.toggleShoppingCartModal()}>
-          <XMarkIcon className=" h-6 w-6 text-black cursor-pointer" />
+          <XMarkIcon className=" h-6 w-6 cursor-pointer text-black" />
         </button>
       </div>
 
-      {cartList?.map((product) => (
-        <ProductCart key={product.id} data={product} />
-      ))}
+      <div className="overflow-y-auto px-0">
+        {cartList?.map((product) => (
+          <ProductOrder
+            key={product.id}
+            title={product.title}
+            imageUrl={product.image}
+            price={product.price}
+          />
+        ))}
+      </div>
     </aside>
   )
 }
