@@ -3,7 +3,7 @@ import { XMarkIcon } from "@heroicons/react/24/solid"
 
 function ProductOrder(props) {
   // eslint-disable-next-line react/prop-types, no-unused-vars, no-undef
-  const { title, imageUrl, price } = props
+  const { id, title, imageUrl, price, handleDelete } = props
 
   return (
     <div>
@@ -24,7 +24,9 @@ function ProductOrder(props) {
         <div className="flex items-center gap-2">
           {/* price */}
           <span className="text-lg font-medium">${price}</span>
-          <XMarkIcon className="h6 w-6 cursor-pointer text-black" />
+          <button onClick={() => handleDelete(id)}>
+            <XMarkIcon className="h6 w-6 text-black" />
+          </button>
         </div>
       </div>
 

@@ -16,6 +16,12 @@ const Cart = () => {
   const showModal = context.isShoppingCartOpen ? "flex" : "hidden"
   const cartList = context.shoppingCart
 
+  const deleteProduct = (id) => {
+    const cart = context.shoppingCart
+    const cartUpdated = cart.filter((product) => product.id !== id)
+    context.setShoppingCart(cartUpdated)
+  }
+
   return (
     <aside
       className={`product-detail fixed right-0 z-10 flex flex-col rounded-lg border border-black bg-white p-5 ${showModal}`}
@@ -32,9 +38,11 @@ const Cart = () => {
         {cartList?.map((product) => (
           <ProductOrder
             key={product.id}
+            id={product.id}
             title={product.title}
             imageUrl={product.image}
             price={product.price}
+            handleDelete={deleteProduct}
           />
         ))}
       </div>
