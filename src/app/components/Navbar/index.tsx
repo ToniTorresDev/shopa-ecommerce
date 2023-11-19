@@ -16,7 +16,7 @@ function Navbar() {
   return (
     <nav
       id="main-navbar"
-      className="flex justify-between items-center fized z-10 w-full py-5 px-8 text-sm font-light"
+      className="fized z-10 flex w-full items-center justify-between px-8 py-5 text-sm font-light"
     >
       <ul className="flex items-center gap-3">
         {leftNav.map((link) => (
@@ -59,11 +59,11 @@ function Navbar() {
           </li>
         ))}
         <li
-          className="flex items-center cursor-pointer"
+          className="flex cursor-pointer items-center"
           onClick={() => context.toggleShoppingCartModal()}
         >
-          <ShoppingBagIcon className="h-6 w-6 text-black cursor-pointer" />
-          {context.shoppingCartCount}
+          <ShoppingBagIcon className="h-6 w-6 cursor-pointer text-black" />
+          {context.shoppingCart.length}
         </li>
       </ul>
     </nav>
