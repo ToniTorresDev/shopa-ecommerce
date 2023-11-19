@@ -12,7 +12,6 @@ function ProductCard(data) {
 
   const addProductToCart = (ev, product) => {
     ev.stopPropagation()
-    context.setShoppingCartCount(context.shoppingCartCount + 1)
     context.setShoppingCart([...context.shoppingCart, product])
   }
 
