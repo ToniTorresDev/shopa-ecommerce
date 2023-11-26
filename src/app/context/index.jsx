@@ -14,7 +14,6 @@ export const ShoppingCartProvider = ({ children }) => {
 
   // Cart order
   const [orders, setOrders] = useState([])
-  console.log(orders)
 
   // Product detail modal state - true/false
   const [isProductDetailOpen, setIsProductDetailOpen] = useState(false)
