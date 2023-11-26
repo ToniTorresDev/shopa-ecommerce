@@ -10,6 +10,7 @@ import ProductOrder from "../ProductOrder"
 
 // Styles
 import "./styles.css"
+import { getTotalPrice } from "../../utils"
 
 const Cart = () => {
   const context = useContext(ShoppingCartContext)
@@ -45,6 +46,15 @@ const Cart = () => {
             handleDelete={deleteProduct}
           />
         ))}
+      </div>
+
+      <div className="px-6">
+        <p className="flex items-center justify-between">
+          <span className="font-light">Total:</span>
+          <span className="text-2xl font-medium">
+            <strong>${getTotalPrice(cartList)}</strong>
+          </span>
+        </p>
       </div>
     </aside>
   )
