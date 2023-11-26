@@ -12,6 +12,10 @@ export const ShoppingCartProvider = ({ children }) => {
   const toggleShoppingCartModal = () =>
     setIsShoppingCartOpen(!isShoppingCartOpen)
 
+  // Cart order
+  const [orders, setOrders] = useState([])
+  console.log(orders)
+
   // Product detail modal state - true/false
   const [isProductDetailOpen, setIsProductDetailOpen] = useState(false)
   const toggleProductDetail = () => setIsProductDetailOpen(!isProductDetailOpen)
@@ -32,6 +36,8 @@ export const ShoppingCartProvider = ({ children }) => {
         isShoppingCartOpen,
         setIsShoppingCartOpen,
         toggleShoppingCartModal,
+        orders,
+        setOrders,
       }}
     >
       {children}

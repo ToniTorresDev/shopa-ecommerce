@@ -16,11 +16,26 @@ const Cart = () => {
   const context = useContext(ShoppingCartContext)
   const showModal = context.isShoppingCartOpen ? "flex" : "hidden"
   const cartList = context.shoppingCart
+  const totalPrice = getTotalPrice(cartList)
 
   const deleteProduct = (id) => {
     const cart = context.shoppingCart
     const cartUpdated = cart.filter((product) => product.id !== id)
     context.setShoppingCart(cartUpdated)
+  }
+
+  const handleCheckout = () => {
+    const orderToAdd = {
+      id: "x",
+      products: cartList,
+      totalProducts: cartList.length,
+      totalPrice: totalPrice,
+      created_at: "26-11-2023",
+      updated_at: "26-11-2023",
+    }
+
+    context.setOrders([...context.orders, orderToAdd])
+    context.setShoppingCart([])
   }
 
   return (
@@ -35,7 +50,7 @@ const Cart = () => {
         </button>
       </div>
 
-      <div className="overflow-y-auto px-0">
+      <div className="flex-1 overflow-y-auto px-0">
         {cartList?.map((product) => (
           <ProductOrder
             key={product.id}
@@ -48,13 +63,22 @@ const Cart = () => {
         ))}
       </div>
 
-      <div className="px-6">
+      <div className="mt-4 px-6">
         <p className="flex items-center justify-between">
           <span className="font-light">Total:</span>
           <span className="text-2xl font-medium">
-            <strong>${getTotalPrice(cartList)}</strong>
+            <strong>${totalPrice}</strong>
           </span>
         </p>
+      </div>
+
+      <div className="px-6">
+        <button
+          className="mt-3 w-full rounded-lg bg-black px-4 py-2 text-white"
+          onClick={() => handleCheckout()}
+        >
+          Checkout
+        </button>
       </div>
     </aside>
   )
