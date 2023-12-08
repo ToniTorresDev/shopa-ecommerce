@@ -52,7 +52,9 @@ function ProductCard(data) {
         {renderIcon(data.data.id)}
       </figure>
       <p className="flex justify-between">
-        <span className="text-sm font-light">{data.data.title}</span>
+        <span className="line-clamp-2 text-sm font-light">
+          {data.data.title}
+        </span>
         <span className="text-lg font-medium">${data.data.price}</span>
       </p>
     </div>
