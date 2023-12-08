@@ -10,34 +10,36 @@ import "./styles.css"
 
 const ProductDetail = () => {
   const context = useContext(ShoppingCartContext)
-  const showModal = context.isProductDetailOpen ? "flex" : "hidden"
+  const showModal = context.isProductDetailOpen
+    ? "opacity-100 translate-x-0"
+    : "opacity-0 -translate-x-full"
   const product = context.productToShow
 
   const productMaxRate = 5
 
   return (
     <aside
-      className={`product-detail p-5 flex flex-col fixed right-0 border border-black rounded-lg bg-white ${showModal}`}
+      className={`product-detail fixed right-0 flex flex-col rounded-lg border border-black bg-white p-5 transition-all duration-300 ease-in-out ${showModal}`}
     >
-      <div className="flex justify-between items-center">
-        <h2 className="font-medium text-xl">Product</h2>
+      <div className="flex items-center justify-between">
+        <h2 className="text-xl font-medium">Product</h2>
 
         <button onClick={() => context.toggleProductDetail()}>
-          <XMarkIcon className="h-6 w-6 text-black cursor-pointer" />
+          <XMarkIcon className="h-6 w-6 cursor-pointer text-black" />
         </button>
       </div>
 
-      <h1 className="font-bold text-2xl">{product.title}</h1>
+      <h1 className="text-2xl font-bold">{product.title}</h1>
 
       <figure>
         <img
-          className="w-full h-full rounded-lg mt-3"
+          className="mt-3 h-full w-full rounded-lg"
           src={product.image}
           alt={product.title}
         />
       </figure>
 
-      <div className="flex justify-between mt-3">
+      <div className="mt-3 flex justify-between">
         <small>
           {product.rating?.rate}/{productMaxRate}
         </small>
