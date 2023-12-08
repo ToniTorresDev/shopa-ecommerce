@@ -11,9 +11,11 @@ import ProductOrder from "../ProductOrder"
 // Styles
 import "./styles.css"
 import { getTotalPrice } from "../../utils"
+import { useNavigate } from "react-router-dom"
 
 const Cart = () => {
   const context = useContext(ShoppingCartContext)
+  const navigate = useNavigate()
   const showModal = context.isShoppingCartOpen ? "flex" : "hidden"
   const cartList = context.shoppingCart
   const totalPrice = getTotalPrice(cartList)
@@ -49,6 +51,7 @@ const Cart = () => {
 
     context.setOrders([...context.orders, orderToAdd])
     context.setShoppingCart([])
+    navigate("my-orders")
   }
 
   return (
