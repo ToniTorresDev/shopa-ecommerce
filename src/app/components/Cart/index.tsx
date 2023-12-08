@@ -24,14 +24,27 @@ const Cart = () => {
     context.setShoppingCart(cartUpdated)
   }
 
+  const generateId = (length = 5) => {
+    let result = ""
+    const characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+    const charactersLength = characters.length
+    let counter = 0
+    while (counter < length) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength))
+      counter += 1
+    }
+    return result
+  }
+
   const handleCheckout = () => {
     const orderToAdd = {
-      id: "x",
+      id: generateId(),
       products: cartList,
       totalProducts: cartList.length,
       totalPrice: totalPrice,
-      created_at: "26-11-2023",
-      updated_at: "26-11-2023",
+      created_at: new Date().toLocaleDateString(),
+      updated_at: new Date().toLocaleDateString(),
     }
 
     context.setOrders([...context.orders, orderToAdd])
