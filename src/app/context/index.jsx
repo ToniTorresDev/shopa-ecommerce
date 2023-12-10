@@ -61,14 +61,12 @@ export const ShoppingCartProvider = ({ children }) => {
   }
 
   useEffect(() => {
-    console.log("searchByCategory")
     if (searchByTitle !== "") {
       const p = filteredProductsByTitle(products, searchByTitle)
       setFilteredProducts(p)
       return
     }
     if (searchByCategory !== "" && searchByCategory !== "all") {
-      console.log("searchByCategory", searchByCategory)
       const p = filteredProductsByCategory(products, searchByCategory)
       setFilteredProducts(p)
       return
