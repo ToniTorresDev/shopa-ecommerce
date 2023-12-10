@@ -1,4 +1,4 @@
-import { createContext, useState } from "react"
+import { createContext, useState, useEffect } from "react"
 
 export const ShoppingCartContext = createContext()
 
@@ -22,6 +22,42 @@ export const ShoppingCartProvider = ({ children }) => {
   // Product to show in modal
   const [productToShow, setProductToShow] = useState({})
 
+  const [products, setProducts] = useState(null)
+  const [filteredProducts, setFilteredProducts] = useState(null)
+  const [loading, setLoading] = useState(true)
+
+  // Get Products by title
+  const [searchByTitle, setSearchByTitle] = useState("")
+
+  useEffect(() => {
+    try {
+      new Promise((resolve) => setTimeout(resolve, 5000))
+      setLoading(true)
+      fetch("https://fakestoreapi.com/products")
+        .then((res) => res.json())
+        .then((data) => setProducts(data))
+    } catch (error) {
+      console.error(error)
+    } finally {
+      setLoading(false)
+    }
+  }, [])
+
+  const filteredProductsByTitle = (products, text) => {
+    if (searchByTitle === "") return products
+
+    return products.filter((product) =>
+      product.title.toLowerCase().includes(text.toLowerCase())
+    )
+  }
+
+  useEffect(() => {
+    if (searchByTitle !== "") {
+      const p = filteredProductsByTitle(products, searchByTitle)
+      setFilteredProducts(p)
+    }
+  }, [products, searchByTitle])
+
   return (
     <ShoppingCartContext.Provider
       value={{
@@ -37,6 +73,14 @@ export const ShoppingCartProvider = ({ children }) => {
         toggleShoppingCartModal,
         orders,
         setOrders,
+        products,
+        setProducts,
+        loading,
+        setLoading,
+        searchByTitle,
+        setSearchByTitle,
+        filteredProducts,
+        setFilteredProducts,
       }}
     >
       {children}

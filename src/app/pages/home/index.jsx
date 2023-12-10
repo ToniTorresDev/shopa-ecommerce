@@ -1,30 +1,57 @@
-import { useState, useEffect } from "react"
+import { useContext } from "react"
 import DefaultLayout from "../../layouts/default"
 import ProductCard from "./../../components/ProductCard"
 import ProductDetail from "../../components/ProductDetail"
+import { ShoppingCartContext } from "../../context"
+import { MagnifyingGlassIcon } from "@heroicons/react/24/solid"
 
 function Home() {
-  const [products, setProducts] = useState(null)
-  const [loading, setLoading] = useState(true)
+  const context = useContext(ShoppingCartContext)
 
-  useEffect(() => {
-    /* fetch("https://api.escuelajs.co/api/v1/products") */
-    try {
-      new Promise((resolve) => setTimeout(resolve, 5000))
-      setLoading(true)
-      fetch("https://fakestoreapi.com/products")
-        .then((res) => res.json())
-        .then((data) => setProducts(data))
-    } catch (error) {
-      console.error(error)
-    } finally {
-      setLoading(false)
+  const renderView = () => {
+    if (context.searchByTitle === "") {
+      return (
+        <div className="grid grid-cols-4 justify-center gap-4">
+          {context.products?.map((product) => (
+            <ProductCard key={product.id} data={product} />
+          ))}
+        </div>
+      )
     }
-  }, [])
+
+    if (context.filteredProducts?.length === 0) {
+      return (
+        <div
+          className="mb-4 flex items-center rounded-lg bg-yellow-50 p-4 text-sm text-yellow-800 dark:bg-gray-800 dark:text-yellow-300"
+          role="alert"
+        >
+          <svg
+            className="me-3 inline h-4 w-4 flex-shrink-0"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+          </svg>
+          <span className="sr-only">Info</span>
+          <div>Sorry, no products were found.</div>
+        </div>
+      )
+    }
+
+    return (
+      <div className="grid grid-cols-4 justify-center gap-4">
+        {context.filteredProducts?.map((product) => (
+          <ProductCard key={product.id} data={product} />
+        ))}
+      </div>
+    )
+  }
 
   return (
     <DefaultLayout>
-      {loading ? (
+      {context.loading ? (
         <div className="flex items-center justify-center">
           <div role="status">
             <svg
@@ -47,10 +74,21 @@ function Home() {
           </div>
         </div>
       ) : (
-        <div className="grid grid-cols-4 justify-center gap-4">
-          {products?.map((product) => (
-            <ProductCard key={product.id} data={product} />
-          ))}
+        <div>
+          <div className="flex justify-center">
+            <div className="relative">
+              <MagnifyingGlassIcon className="absolute left-2 top-2 h-6 w-6 cursor-pointer text-black" />
+              <input
+                type="search"
+                className="mb-5 h-6 w-80 rounded-lg border border-black bg-gray-100 py-5 pl-10 pr-4 focus:bg-gray-200 focus:outline-none"
+                placeholder="Search a product..."
+                title="product searcher"
+                onChange={(ev) => context.setSearchByTitle(ev.target.value)}
+              />
+            </div>
+          </div>
+
+          {renderView()}
         </div>
       )}
       <ProductDetail />
