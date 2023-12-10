@@ -24,7 +24,7 @@ const ProductDetail = () => {
       <div className="flex items-center justify-between">
         <h2 className="text-xl font-medium">Product</h2>
 
-        <button onClick={() => context.toggleProductDetail()}>
+        <button onClick={() => context.closeProductDetail()}>
           <XMarkIcon className="h-6 w-6 cursor-pointer text-black" />
         </button>
       </div>

@@ -60,7 +60,7 @@ function Navbar() {
         ))}
         <li
           className="flex cursor-pointer items-center"
-          onClick={() => context.toggleShoppingCartModal()}
+          onClick={() => context.showShoppingCartModal()}
         >
           <ShoppingBagIcon className="h-6 w-6 cursor-pointer text-black" />
           {context.shoppingCart.length}

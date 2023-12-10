@@ -51,6 +51,8 @@ const Cart = () => {
 
     context.setOrders([...context.orders, orderToAdd])
     context.setShoppingCart([])
+    context.closeProductDetail()
+    context.closeShoppingCartModal()
     navigate("my-orders")
   }
 
@@ -61,7 +63,7 @@ const Cart = () => {
       <div className="flex items-center justify-between">
         <h2 className="text-xl font-medium">Cart</h2>
 
-        <button onClick={() => context.toggleShoppingCartModal()}>
+        <button onClick={() => context.closeShoppingCartModal()}>
           <XMarkIcon className=" h-6 w-6 cursor-pointer text-black" />
         </button>
       </div>

@@ -9,15 +9,16 @@ export const ShoppingCartProvider = ({ children }) => {
 
   // Shopping Modal
   const [isShoppingCartOpen, setIsShoppingCartOpen] = useState(false)
-  const toggleShoppingCartModal = () =>
-    setIsShoppingCartOpen(!isShoppingCartOpen)
+  const showShoppingCartModal = () => setIsShoppingCartOpen(true)
+  const closeShoppingCartModal = () => setIsShoppingCartOpen(false)
 
   // Cart order
   const [orders, setOrders] = useState([])
 
   // Product detail modal state - true/false
   const [isProductDetailOpen, setIsProductDetailOpen] = useState(false)
-  const toggleProductDetail = () => setIsProductDetailOpen(!isProductDetailOpen)
+  const showProductDetail = () => setIsProductDetailOpen(true)
+  const closeProductDetail = () => setIsProductDetailOpen(false)
 
   // Product to show in modal
   const [productToShow, setProductToShow] = useState({})
@@ -79,14 +80,16 @@ export const ShoppingCartProvider = ({ children }) => {
       value={{
         isProductDetailOpen,
         setIsProductDetailOpen,
-        toggleProductDetail,
+        showProductDetail,
+        closeProductDetail,
         productToShow,
         setProductToShow,
         shoppingCart,
         setShoppingCart,
         isShoppingCartOpen,
         setIsShoppingCartOpen,
-        toggleShoppingCartModal,
+        showShoppingCartModal,
+        closeShoppingCartModal,
         orders,
         setOrders,
         products,
