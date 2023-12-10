@@ -14,6 +14,7 @@ import MyOrders from "./my-orders"
 const AppRoutes = () => {
   let routes = useRoutes([
     { path: "/", element: <Home /> },
+    { path: "/category/:category", element: <Home /> },
     { path: "/home", element: <Home /> },
     { path: "/signin", element: <SignIn /> },
     { path: "/my-account", element: <MyAccount /> },

@@ -4,15 +4,33 @@ import ProductCard from "./../../components/ProductCard"
 import ProductDetail from "../../components/ProductDetail"
 import { ShoppingCartContext } from "../../context"
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid"
+import { useParams } from "react-router-dom"
+import { useEffect } from "react"
 
 function Home() {
   const context = useContext(ShoppingCartContext)
+  let { category } = useParams()
+  useEffect(() => {
+    if (category) {
+      context.setSearchByCategory(category)
+    }
+  }, [category, context])
 
   const renderView = () => {
-    if (context.searchByTitle === "") {
+    if (context.searchByTitle === "" && context.searchByCategory === "") {
       return (
         <div className="grid grid-cols-4 justify-center gap-4">
           {context.products?.map((product) => (
+            <ProductCard key={product.id} data={product} />
+          ))}
+        </div>
+      )
+    }
+
+    if (context.searchByCategory !== "") {
+      return (
+        <div className="grid grid-cols-4 justify-center gap-4">
+          {context.filteredProducts?.map((product) => (
             <ProductCard key={product.id} data={product} />
           ))}
         </div>

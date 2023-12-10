@@ -5,33 +5,28 @@ export const leftNav = [
     className: "font-semibold text-lg",
   },
   {
-    to: "/",
+    to: "/category/all",
     text: "All",
     className: "",
   },
   {
-    to: "/clothes",
-    text: "clothes",
+    to: "/category/men's clothing",
+    text: "men's clothing",
     className: "",
   },
   {
-    to: "/electronics",
+    to: "/category/women's clothing",
+    text: "women's clothing",
+    className: "",
+  },
+  {
+    to: "/category/electronics",
     text: "electronics",
     className: "",
   },
   {
-    to: "/furnitures",
-    text: "furnitures",
-    className: "",
-  },
-  {
-    to: "/toys",
-    text: "toys",
-    className: "",
-  },
-  {
-    to: "/others",
-    text: "others",
+    to: "/category/jewelery",
+    text: "jewelery",
     className: "",
   },
 ]

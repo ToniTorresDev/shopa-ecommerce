@@ -28,6 +28,7 @@ export const ShoppingCartProvider = ({ children }) => {
 
   // Get Products by title
   const [searchByTitle, setSearchByTitle] = useState("")
+  const [searchByCategory, setSearchByCategory] = useState("")
 
   useEffect(() => {
     try {
@@ -51,12 +52,29 @@ export const ShoppingCartProvider = ({ children }) => {
     )
   }
 
+  const filteredProductsByCategory = (products, text) => {
+    if (searchByCategory === "") return products
+
+    return products.filter((product) =>
+      product.category.toLowerCase().includes(text.toLowerCase())
+    )
+  }
+
   useEffect(() => {
+    console.log("searchByCategory")
     if (searchByTitle !== "") {
       const p = filteredProductsByTitle(products, searchByTitle)
       setFilteredProducts(p)
+      return
     }
-  }, [products, searchByTitle])
+    if (searchByCategory !== "" && searchByCategory !== "all") {
+      console.log("searchByCategory", searchByCategory)
+      const p = filteredProductsByCategory(products, searchByCategory)
+      setFilteredProducts(p)
+      return
+    }
+    setFilteredProducts(products)
+  }, [products, searchByTitle, searchByCategory])
 
   return (
     <ShoppingCartContext.Provider
@@ -81,6 +99,8 @@ export const ShoppingCartProvider = ({ children }) => {
         setSearchByTitle,
         filteredProducts,
         setFilteredProducts,
+        searchByCategory,
+        setSearchByCategory,
       }}
     >
       {children}
